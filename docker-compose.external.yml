@@ -6,7 +6,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./Downloads:/root/Downloads
+      - ./docker/Downloads:/root/Downloads
     restart: unless-stopped
 
   frontend:
@@ -16,7 +16,7 @@ services:
     depends_on:
       - backend
     volumes:
-      - ./Downloads:/usr/share/nginx/html/downloads
+      - ./docker/Downloads:/usr/share/nginx/html/downloads
     restart: unless-stopped
 
 volumes:
