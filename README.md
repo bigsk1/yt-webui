@@ -36,14 +36,17 @@ A web-based user interface for yt-dlp, allowing easy video downloads from YouTub
 
 3. Start the application:
    - On Unix-based systems (Linux, macOS):
+
+   - set permission to run using: 
+
+     ```bash
+      chmod +x start.sh
+     ```
+
      ```
      ./start.sh
      ```
-   - Then set permission to run using: 
 
-      ```bash
-      chmod +x start.sh
-      ```
 
    - On Windows:
      ```
