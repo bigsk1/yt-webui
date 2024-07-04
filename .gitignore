@@ -45,12 +45,10 @@ ehthumbs.db
 Thumbs.db
 
 # Docker
-docker/**/Downloads/
-Downloads
-docker/Downloads
 
 # But don't ignore the .gitkeep file
 !docker/Downloads/.gitkeep
+
 
 # Logs
 logs
