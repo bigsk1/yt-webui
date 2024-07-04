@@ -77,20 +77,21 @@ jobs:
     permissions:
       packages: write
     steps:
-      - name: Delete old frontend packages
-        uses: actions/delete-package-versions@v4
-        with:
-          package-name: ${{ env.FRONTEND_IMAGE_NAME }}
-          package-type: container
-          min-versions-to-keep: 3
-          delete-only-untagged-versions: false
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install GitHub CLI
+        run: sudo apt-get install -y gh
 
-      - name: Delete old backend packages
-        uses: actions/delete-package-versions@v4
-        with:
-          package-name: ${{ env.BACKEND_IMAGE_NAME }}
-          package-type: container
-          min-versions-to-keep: 3
-          delete-only-untagged-versions: false
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Cleanup old frontend packages
+        env:
+          PACKAGE_NAME: ${{ env.FRONTEND_IMAGE_NAME }}
+          PACKAGE_OWNER: ${{ github.repository_owner }}
+        run: |
+          gh api --paginate -H "Accept: application/vnd.github+json" /orgs/${PACKAGE_OWNER}/packages/container/${PACKAGE_NAME}/versions > versions.json
+          jq -r '.[].id' versions.json | tail -n +4 | xargs -I {} gh api --method DELETE /orgs/${PACKAGE_OWNER}/packages/container/${PACKAGE_NAME}/versions/{} --silent
+
+      - name: Cleanup old backend packages
+        env:
+          PACKAGE_NAME: ${{ env.BACKEND_IMAGE_NAME }}
+          PACKAGE_OWNER: ${{ github.repository_owner }}
+        run: |
+          gh api --paginate -H "Accept: application/vnd.github+json" /orgs/${PACKAGE_OWNER}/packages/container/${PACKAGE_NAME}/versions > versions.json
+          jq -r '.[].id' versions.json | tail -n +4 | xargs -I {} gh api --method DELETE /orgs/${PACKAGE_OWNER}/packages/container/${PACKAGE_NAME}/versions/{} --silent
