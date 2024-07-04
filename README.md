@@ -39,6 +39,12 @@ A web-based user interface for yt-dlp, allowing easy video downloads from YouTub
      ```
      ./start.sh
      ```
+   - Then set permission to run using: 
+
+      ```bash
+      chmod +x start.sh
+      ```
+
    - On Windows:
      ```
      start.bat
@@ -48,6 +54,13 @@ A web-based user interface for yt-dlp, allowing easy video downloads from YouTub
 
 5. To stop the application:
    - On Unix-based systems (Linux, macOS):
+
+   - set permission to stop using: 
+
+      ```bash
+      chmod +x stop.sh
+      ```
+
      ```
      ./stop.sh
      ```
