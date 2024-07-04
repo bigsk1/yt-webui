@@ -70,31 +70,3 @@ jobs:
           push: true
           tags: ${{ steps.meta-backend.outputs.tags }}
           labels: ${{ steps.meta-backend.outputs.labels }}
-
-  cleanup-packages:
-    runs-on: ubuntu-latest
-    needs: build-and-push-image
-    permissions:
-      contents: read
-      packages: write
-    steps:
-      - name: Install GitHub CLI
-        run: sudo apt-get install -y gh
-
-      - name: Cleanup old frontend packages
-        env:
-          PACKAGE_NAME: ${{ env.FRONTEND_IMAGE_NAME }}
-          PACKAGE_OWNER: ${{ github.repository_owner }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh api --paginate -H "Accept: application/vnd.github+json" /orgs/${PACKAGE_OWNER}/packages/container/${PACKAGE_NAME}/versions > versions.json
-          jq -r '.[].id' versions.json | tail -n +4 | xargs -I {} gh api --method DELETE /orgs/${PACKAGE_OWNER}/packages/container/${PACKAGE_NAME}/versions/{} --silent
-
-      - name: Cleanup old backend packages
-        env:
-          PACKAGE_NAME: ${{ env.BACKEND_IMAGE_NAME }}
-          PACKAGE_OWNER: ${{ github.repository_owner }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh api --paginate -H "Accept: application/vnd.github+json" /orgs/${PACKAGE_OWNER}/packages/container/${PACKAGE_NAME}/versions > versions.json
-          jq -r '.[].id' versions.json | tail -n +4 | xargs -I {} gh api --method DELETE /orgs/${PACKAGE_OWNER}/packages/container/${PACKAGE_NAME}/versions/{} --silent
