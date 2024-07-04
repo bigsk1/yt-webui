@@ -75,6 +75,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-and-push-image
     permissions:
+      contents: read
       packages: write
     steps:
       - name: Install GitHub CLI
@@ -84,6 +85,7 @@ jobs:
         env:
           PACKAGE_NAME: ${{ env.FRONTEND_IMAGE_NAME }}
           PACKAGE_OWNER: ${{ github.repository_owner }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh api --paginate -H "Accept: application/vnd.github+json" /orgs/${PACKAGE_OWNER}/packages/container/${PACKAGE_NAME}/versions > versions.json
           jq -r '.[].id' versions.json | tail -n +4 | xargs -I {} gh api --method DELETE /orgs/${PACKAGE_OWNER}/packages/container/${PACKAGE_NAME}/versions/{} --silent
@@ -92,6 +94,7 @@ jobs:
         env:
           PACKAGE_NAME: ${{ env.BACKEND_IMAGE_NAME }}
           PACKAGE_OWNER: ${{ github.repository_owner }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh api --paginate -H "Accept: application/vnd.github+json" /orgs/${PACKAGE_OWNER}/packages/container/${PACKAGE_NAME}/versions > versions.json
           jq -r '.[].id' versions.json | tail -n +4 | xargs -I {} gh api --method DELETE /orgs/${PACKAGE_OWNER}/packages/container/${PACKAGE_NAME}/versions/{} --silent
