@@ -2,6 +2,10 @@
 
 A web-based user interface for yt-dlp, allowing easy video downloads from YouTube and other supported platforms.
 
+
+![YT-WEBUI](https://imagedelivery.net/WfhVb8dSNAAvdXUdMfBuPQ/48ffe438-3815-432d-8947-8a1d361c1800/public)
+
+
 ## Features
 
 - Download videos in various formats and qualities
@@ -13,7 +17,7 @@ A web-based user interface for yt-dlp, allowing easy video downloads from YouTub
 ## Prerequisites
 
 - Python 3.8+
-- Node.js 14+
+- Node.js 18+
 - FFmpeg
 - Docker and Docker Compose (for Docker deployment)
 
@@ -24,7 +28,7 @@ A web-based user interface for yt-dlp, allowing easy video downloads from YouTub
 1. Clone the repository:
    ```
    git clone https://github.com/bigsk1/yt-webui.git
-   cd yt-dlp-web-ui
+   cd yt-webui
    ```
 
 2. Install backend dependencies:
@@ -56,7 +60,7 @@ A web-based user interface for yt-dlp, allowing easy video downloads from YouTub
 2. Clone the repository:
    ```
    git clone https://github.com/bigsk1/yt-webui.git
-   cd yt-dlp-web-ui
+   cd yt-webui
    ```
 
 3. Build and start the Docker containers:
@@ -71,7 +75,7 @@ A web-based user interface for yt-dlp, allowing easy video downloads from YouTub
 1. Enter the URL of the video you want to download in the input field.
 2. Select your preferred download options (format, quality, etc.).
 3. Click the "Download" button to start the download process.
-4. The downloaded files will be saved in the specified output directory.
+4. The downloaded files will be saved in the specified output directory of Downloads in the dockerfile if using native app then in Downloads of windows user.
 
 ## Docker Commands
 
