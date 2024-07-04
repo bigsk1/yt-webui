@@ -127,6 +127,21 @@ docker-compose -f docker-compose.external.yml down
 3. Click the "Download" button to start the download process.
 4. The downloaded files will be saved in the specified output directory of Downloads in the docker folder, if using native app then in Downloads folder of windows user.
 
+On windows if you want to link the Downloads directory of your docker container to your Windows Downloads location run in project root as command prompt admin
+
+```bash
+mklink /D "%USERPROFILE%\Downloads\yt_downloads" "%CD%\docker\Downloads"
+```
+
+or as Powershell admin
+
+```bash
+New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\Downloads\yt_downloads" -Target "$PWD\docker\Downloads"
+```
+
+Then all your downloaded content will be in your windows Downloads folder in a yt_downloads folder
+
+
 ## Docker Commands
 
 - Start the containers: `docker-compose up -d`
@@ -137,7 +152,14 @@ docker-compose -f docker-compose.external.yml down
 
 ## Notes
 
-I know the Downloads folder in the docker folder isn't ideal for most and might be changing but do to windows permission issues with docker trying to map to users downloads folder is an issue, there is work that can be done to allow it but trying to make this setup easy for most users. Hence the double click scripts to get up and going. 
+I know the Downloads folder in the docker folder isn't ideal for most but do to windows permission issues with docker trying to map to users downloads folder is an issue, there is work that can be done to allow it but trying to make this setup easy for most users. Hence the double click scripts to get up and going. 
+
+you can also just symlink it but running this as admin in in command prompt the project folder
+
+```bash
+mklink /D "%USERPROFILE%\Downloads\yt_downloads" "%CD%\docker\Downloads"
+```
+
 
 ## Contributing
 
