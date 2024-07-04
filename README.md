@@ -46,10 +46,15 @@ A web-based user interface for yt-dlp, allowing easy video downloads from YouTub
 
 4. Open your web browser and navigate to `http://localhost:3000` to use the application.
 
-5. To stop the application, run:
-   ```
-   docker-compose down
-   ```
+5. To stop the application:
+   - On Unix-based systems (Linux, macOS):
+     ```
+     ./stop.sh
+     ```
+   - On Windows:
+     ```
+     stop.bat
+     ```
 
 
 ### Local Development Setup
@@ -99,12 +104,28 @@ A web-based user interface for yt-dlp, allowing easy video downloads from YouTub
 
 4. Open your browser and navigate to `http://localhost:3000`
 
+
+## Use prebuilt docker images from github
+
+To start
+
+```bash
+docker-compose -f docker-compose.external.yml up -d
+```
+
+To stop
+
+```bash
+docker-compose -f docker-compose.external.yml down
+```
+
+
 ## Usage
 
 1. Enter the URL of the video you want to download in the input field.
 2. Select your preferred download options (format, quality, etc.).
 3. Click the "Download" button to start the download process.
-4. The downloaded files will be saved in the specified output directory of Downloads in the dockerfile if using native app then in Downloads of windows user.
+4. The downloaded files will be saved in the specified output directory of Downloads in the docker folder, if using native app then in Downloads folder of windows user.
 
 ## Docker Commands
 
@@ -112,3 +133,13 @@ A web-based user interface for yt-dlp, allowing easy video downloads from YouTub
 - Stop the containers: `docker-compose down`
 - View logs: `docker-compose logs`
 - Rebuild and start the containers: `docker-compose up -d --build`
+
+
+## Notes
+
+I know the Downloads folder in the docker folder isn't ideal for most and might be changing but do to windows permission issues with docker trying to map to users downloads folder is an issue, there is work that can be done to allow it but trying to make this setup easy for most users. Hence the double click scripts to get up and going. 
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
