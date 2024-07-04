@@ -99,7 +99,7 @@ const App = () => {
   return (
     <div className={`min-h-screen ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-900'} transition-colors duration-200 py-6 px-4 sm:px-6 lg:px-8`}>
       <div className="max-w-3xl mx-auto">
-        <h1 className={`text-4xl font-bold text-center mb-8 ${darkMode ? 'text-red-600' : 'text-red-700'}`}>yt-dlp downloader</h1>
+        <h1 className={`text-4xl font-bold text-center mb-8 ${darkMode ? 'text-red-600' : 'text-red-700'}`}>yt webui</h1>
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow-lg p-6 mb-8`}>
           <input
             type="text"
