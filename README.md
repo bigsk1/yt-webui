@@ -23,6 +23,35 @@ A web-based user interface for yt-dlp, allowing easy video downloads from YouTub
 
 ## Installation
 
+
+## Quick Start
+
+1. Ensure you have [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) installed on your system.
+
+2. Clone this repository:
+   ```
+   git clone https://github.com/bigsk1/yt-webui.git
+   cd yt-webui
+   ```
+
+3. Start the application:
+   - On Unix-based systems (Linux, macOS):
+     ```
+     ./start.sh
+     ```
+   - On Windows:
+     ```
+     start.bat
+     ```
+
+4. Open your web browser and navigate to `http://localhost:3000` to use the application.
+
+5. To stop the application, run:
+   ```
+   docker-compose down
+   ```
+
+
 ### Local Development Setup
 
 1. Clone the repository:
