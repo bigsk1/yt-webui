@@ -43,7 +43,7 @@
   "devDependencies": {
     "concurrently": "^6.2.1",
     "cross-env": "^7.0.3",
-    "electron": "^13.2.2",
+    "electron": "^22.3.25",
     "electron-is-dev": "^2.0.0",
     "tailwindcss": "^2.2.19",
     "wait-on": "^6.0.0",
