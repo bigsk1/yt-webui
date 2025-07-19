@@ -74,20 +74,3 @@ jobs:
           push: true
           tags: ${{ steps.meta-backend.outputs.tags }}
           labels: ${{ steps.meta-backend.outputs.labels }}
-
-      # ========== FORCE PUBLIC VISIBILITY ==========
-      - name: Set GHCR images to public
-        run: |
-          gh api \
-            --method PATCH \
-            -H "Accept: application/vnd.github.v3+json" \
-            /users/${{ github.repository_owner }}/packages/container/${{ github.repository }}-frontend/visibility \
-            -f visibility=public
-
-          gh api \
-            --method PATCH \
-            -H "Accept: application/vnd.github.v3+json" \
-            /users/${{ github.repository_owner }}/packages/container/${{ github.repository }}-backend/visibility \
-            -f visibility=public
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
