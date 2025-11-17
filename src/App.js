@@ -68,7 +68,8 @@ const App = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:8000/download/', {
+      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+      const response = await axios.post(`${apiUrl}/download/`, {
         url: url,
         options: ytdlpOptions,
         output_dir: 'default'
